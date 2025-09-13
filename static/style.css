@@ -1,0 +1,320 @@
+/* --- 基础样式 --- */
+body,
+html {
+    height: 100%;
+    /* 使用 100% 代替 100vh */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f4f7f6;
+    /* 取消 overflow: hidden，让内部容器自己管理滚动 */
+}
+
+#chat-container {
+    display: flex;
+    height: 100%;
+    /* 使用 100% 继承父级高度，更稳定 */
+}
+
+#sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+}
+
+#user-list {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#user-list li {
+    padding: 12px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    word-break: break-all;
+}
+
+#user-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#user-list li.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+#user-list li:first-child.active {
+    background-color: #17a2b8;
+}
+
+#nickname-container {
+    margin-top: 10px;
+}
+
+#nickname-input {
+    width: calc(100% - 12px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+#change-nickname-btn {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#change-nickname-btn:hover {
+    background-color: #218838;
+}
+
+#main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #e9ecef;
+    /* --- 核心修复 1：Flexbox 兼容性修复 --- */
+    /* 这告诉 flex 容器它可以收缩到小于其内容的尺寸，对 Safari 至关重要 */
+    min-width: 0;
+    min-height: 0;
+}
+
+#main-header {
+    display: none;
+    background: #f8f9fa;
+    padding: 5px 15px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+#main-header h3 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    line-height: 1;
+}
+
+#messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    /* --- 核心修复 2：同样为消息区添加 --- */
+    min-height: 0;
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message .info {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.message .content {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
+
+.message.sent .content {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.message.received .content {
+    background-color: #ffffff;
+    align-self: flex-start;
+}
+
+.message .copy-btn {
+    font-size: 0.7em;
+    padding: 3px 8px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f0f0f0;
+    margin-top: 5px;
+    align-self: flex-start;
+    display: inline-block;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.message:hover .copy-btn {
+    opacity: 1;
+}
+
+.message.sent .copy-btn {
+    align-self: flex-end;
+}
+
+.system-message {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+#chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    /* --- 核心修复 3：确保输入框容器不会被压缩 --- */
+    flex-shrink: 0;
+}
+
+#message-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    resize: none;
+    max-height: 100px;
+    overflow-y: auto;
+    font-size: 1em;
+}
+
+#send-btn,
+#file-btn {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#file-btn {
+    background-color: #6c757d;
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+}
+
+#file-btn:hover {
+    background-color: #5a6268;
+}
+
+.file-link {
+    display: block;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+}
+
+.file-link:hover {
+    background-color: #e1e1e1;
+}
+
+#drop-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5em;
+    pointer-events: none;
+}
+
+#drop-overlay.visible {
+    display: flex;
+    pointer-events: auto;
+}
+
+.drop-message {
+    padding: 40px 60px;
+    border: 3px dashed #fff;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* --- 响应式设计 (保持不变) --- */
+@media (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 85%;
+        max-width: 300px;
+        z-index: 1000;
+        transform: translateX(-100%);
+        border-right: 2px solid #ccc;
+    }
+
+    #sidebar.visible {
+        transform: translateX(0);
+    }
+
+    #main-header {
+        display: flex;
+    }
+
+    #close-sidebar-btn {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+
+    #menu-btn,
+    #close-sidebar-btn {
+        display: none;
+    }
+}

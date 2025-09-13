@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内网聊天室</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="chat-container">
+        <!-- 侧边栏结构增加一个关闭按钮 -->
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <h3>在线用户</h3>
+                <button id="close-sidebar-btn" class="icon-btn">&times;</button>
+            </div>
+            <ul id="user-list"></ul>
+            <div id="nickname-container">
+                <input type="text" id="nickname-input" placeholder="输入新昵称">
+                <button id="change-nickname-btn">修改昵称</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+             <!-- 主内容区增加一个菜单按钮 -->
+            <div id="main-header">
+                <button id="menu-btn" class="icon-btn">&#9776;</button>
+                <h3 id="chat-with-title">群聊</h3>
+            </div>
+            <div id="messages"></div>
+            <div id="chat-input-container">
+                 <div class="file-upload-wrapper">
+                    <button id="file-btn">📎</button>
+                    <input type="file" id="file-input" style="display: none;" />
+                </div>
+                <textarea id="message-input" placeholder="选择用户，按 Enter 发送消息..." rows="1"></textarea>
+                <button id="send-btn">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 拖拽上传的遮罩层 (保持不变) -->
+    <div id="drop-overlay">
+        <div class="drop-message">
+            <h2>拖拽文件到此处以上传</h2>
+        </div>
+    </div>
+
+    <script src="/static/jsencrypt.min.js"></script>
+    <script src="/static/sha256.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>
