@@ -31,7 +31,7 @@
             <div id="chat-input-container">
                  <div class="file-upload-wrapper">
                     <button id="file-btn">📎</button>
-                    <input type="file" id="file-input" style="display: none;" />
+                    <input type="file" id="file-input" style="display: none;" multiple />
                 </div>
                 <textarea id="message-input" placeholder="选择用户，按 Enter 发送消息..." rows="1"></textarea>
                 <button id="send-btn">发送</button>
@@ -49,5 +49,7 @@
     <script src="/static/jsencrypt.min.js"></script>
     <script src="/static/sha256.min.js"></script>
     <script src="/static/app.js"></script>
+    <script src="/static/StreamSaver.min.js"></script>
+    <script src="/static/crypto-js.min.js"></script>
 </body>
 </html>

@@ -51,6 +51,10 @@ html {
     border-radius: 5px;
     margin-bottom: 5px;
     word-break: break-all;
+    /* --- 新增样式 --- */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #user-list li:hover {
@@ -317,4 +321,64 @@ html {
     #close-sidebar-btn {
         display: none;
     }
+}
+/* --- 新增未读角标样式 --- */
+.unread-badge {
+    background-color: #dc3545; /* 红色背景 */
+    color: white;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 10px;
+    text-align: center;
+}
+/* --- 新增状态指示器样式 --- */
+.status-indicator {
+    margin-right: 5px; /* 与昵称之间留一点空间 */
+    font-size: 0.9em; /* 小一点的图标 */
+    display: inline-block;
+    width: 1em; /* 确保图标宽度一致 */
+    text-align: center;
+}
+/* --- 新增：文件上传进度条样式 --- */
+.progress-container {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: #f0f2f5; /* 类似系统消息的背景 */
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #555;
+}
+.progress-text {
+    display: block; /* 占满整行 */
+    margin-bottom: 6px;
+    word-break: break-all;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden; /* 确保内部填充条不会溢出圆角 */
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%; /* 初始宽度为 0 */
+    background-color: #007bff; /* 默认蓝色 */
+    border-radius: 4px;
+    transition: width 0.2s ease-in-out, background-color 0.3s ease; /* 平滑过渡效果 */
+}
+
+/* 成功状态 */
+.progress-bar-fill.success {
+    background-color: #28a745; /* 绿色 */
+}
+
+/* 失败状态 */
+.progress-bar-fill.error {
+    background-color: #dc3545; /* 红色 */
+    width: 100% !important; /* 失败时也填满，表示已结束 */
 }
